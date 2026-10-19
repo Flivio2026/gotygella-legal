@@ -1,0 +1,19 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Connect TikTok – GOTY Gella Clips</title>
+<style>body{font:16px/1.6 system-ui,sans-serif;max-width:680px;margin:40px auto;padding:0 16px;color:#111}
+a.btn{display:inline-block;background:#111;color:#ffe600;padding:12px 20px;border-radius:10px;text-decoration:none;font-weight:700}
+.muted{color:#555;font-size:14px}</style></head><body>
+<h1>Connect TikTok</h1>
+<p>GOTY Gella Clips is a private tool. It lets the channel owner send their own, manually approved short videos to their own TikTok inbox. Nothing is posted automatically.</p>
+<p>The app asks for two permissions: <b>user.info.basic</b> (to identify the connected account) and <b>video.upload</b> (to send a video to the account's inbox as a draft).</p>
+<p><a class="btn" id="go" href="#">Connect with TikTok</a></p>
+<p class="muted">After you approve, you are sent to a page that shows a one-time code. Send that code to the private Telegram bot to finish.<br>
+<a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms of Service</a></p>
+<script>
+var CLIENT_KEY = "sbawilgjsej2sxs1cd";
+var REDIRECT = "https://flivio2026.github.io/gotygella-legal/callback.html";
+var state = Math.random().toString(36).slice(2) + Date.now().toString(36);
+try { sessionStorage.setItem("tt_state", state); } catch (e) {}
+document.getElementById("go").href = "https://www.tiktok.com/v2/auth/authorize/?client_key=" + encodeURIComponent(CLIENT_KEY) +
+  "&response_type=code&scope=" + encodeURIComponent("user.info.basic,video.upload").replace("%2C", ",") +
+  "&redirect_uri=" + encodeURIComponent(REDIRECT) + "&state=" + encodeURIComponent(state);
+</script></body></html>

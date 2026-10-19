@@ -1,0 +1,25 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TikTok connected – GOTY Gella Clips</title>
+<style>body{font:16px/1.6 system-ui,sans-serif;max-width:680px;margin:40px auto;padding:0 16px;color:#111}
+code{display:block;word-break:break-all;background:#f3f3f3;padding:12px;border-radius:8px;margin:12px 0;font-size:15px}
+button{background:#111;color:#ffe600;border:0;padding:10px 18px;border-radius:8px;font-weight:700;font-size:15px}
+.err{color:#b00020}</style></head><body>
+<h1 id="h">TikTok</h1><div id="out"></div>
+<script>
+var q = new URLSearchParams(location.search), out = document.getElementById("out"), h = document.getElementById("h");
+var code = q.get("code"), err = q.get("error"), saved = null;
+try { saved = sessionStorage.getItem("tt_state"); } catch (e) {}
+if (err) {
+  h.textContent = "Not connected";
+  out.innerHTML = '<p class="err"></p>'; out.firstChild.textContent = (q.get("error_description") || err);
+} else if (!code) {
+  h.textContent = "No code"; out.textContent = "Open the connect page first.";
+} else if (saved && q.get("state") && saved !== q.get("state")) {
+  h.textContent = "Check failed"; out.innerHTML = '<p class="err">The state value does not match. Start again from the connect page.</p>';
+} else {
+  h.textContent = "Almost done";
+  out.innerHTML = '<p>Send this message to your private Telegram bot (long-press, copy):</p><code id="c"></code><button id="b">Copy</button>' +
+                  '<p>The code works once and expires after a short time.</p>';
+  document.getElementById("c").textContent = "/tiktok " + code;
+  document.getElementById("b").onclick = function () { navigator.clipboard.writeText("/tiktok " + code); this.textContent = "Copied"; };
+}
+</script></body></html>
